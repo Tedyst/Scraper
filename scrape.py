@@ -13,19 +13,25 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 sql = "INSERT INTO ryzen (timp, nume, pret) VALUES (%s, %s, %s)"
 
-def findLinks(url):
+def findLinks(url, base):
 	userAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36"
 	req = Request(url, None, {'User-Agent': userAgent})
 	html = urlopen(req).read()	
 	soup = BeautifulSoup(html, "lxml")
 	if "emag" in url:
 		for link in soup.find_all('div',attrs={'class' : 'card-section-wrapper'}):
-			nume = str(link.contents[1].contents[1].contents[0].contents[1].contents[0].get('alt').split("+", 1)[0].replace(u'\xa0', u' ').split(",", 1)[0].split("Procesor AMD ", 1)[1])
+			if base == "ryzen":
+				nume = str(link.contents[1].contents[1].contents[0].contents[1].contents[0].get('alt').split("+", 1)[0].replace(u'\xa0', u' ').split(",", 1)[0].split("Procesor AMD ", 1)[1])
+			if base == "memorie":
+				nume = str(link.contents[1].contents[1].contents[0].contents[1].contents[0].get('alt').split("+", 1)[0].replace(u'\xa0', u' ').split(",", 1)[0].split("Memorie ", 1)[1])
 			pret = int(link.contents[5].contents[2].contents[2].contents[0].replace(".",""))
 			timp = int(int(time.time()))
 			data = (timp, nume, pret)
 			print data
-			mycursor.execute(sql, data)
+			if base == "ryzen":
+				mycursor.execute("INSERT INTO ryzen (timp, nume, pret) VALUES (%s, %s, %s)", data)
+			if base == "memorie":
+				mycursor.execute("INSERT INTO memorie (timp, nume, pret) VALUES (%s, %s, %s)", data)
 			# print(link.contents[5].contents[2].contents[2].contents[0].replace(".","") + " " + link.contents[1].contents[1].contents[0].contents[1].contents[0].get('alt').split("+", 1)[0])
 	mydb.commit()
 
@@ -42,7 +48,8 @@ def findPrice(url):
 			return decimal.Decimal(link.contents[0])
 
 def cauta():
-	findLinks("https://www.emag.ro/procesoare/filter/familie-procesor-f2666,amd-ryzen-7-v24725/familie-procesor-f2666,amd-ryzen-5-v24753/familie-procesor-f2666,amd-ryzen-3-v25688/c?ref=lst_leftbar_2666_25688,lst_leftbar_2666_24753,lst_leftbar_2666_24725")
+	findLinks("https://www.emag.ro/procesoare/filter/familie-procesor-f2666,amd-ryzen-7-v24725/familie-procesor-f2666,amd-ryzen-5-v24753/familie-procesor-f2666,amd-ryzen-3-v25688/c?ref=lst_leftbar_2666_25688,lst_leftbar_2666_24753,lst_leftbar_2666_24725", "ryzen")
+	findLinks("https://www.emag.ro/memorii/brand/corsair,hyperx,kingston/filter/tip-memorie-f5,ddr4-v10954/capacitate-f141,8-gb-v389/module-f142,single-channel-v7234/pret,intre-0-si-500/c", "memorie")
 	print time.time()
 
 cauta()
