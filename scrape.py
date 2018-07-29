@@ -11,7 +11,6 @@ mydb = mysql.connector.connect(
   database="tedy"
 )
 mycursor = mydb.cursor()
-sql = "INSERT INTO ryzen (timp, nume, pret) VALUES (%s, %s, %s)"
 
 def findLinks(url, base):
 	userAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36"
@@ -23,7 +22,7 @@ def findLinks(url, base):
 			if base == "ryzen":
 				nume = str(link.contents[1].contents[1].contents[0].contents[1].contents[0].get('alt').split("+", 1)[0].replace(u'\xa0', u' ').split(",", 1)[0].split("Procesor AMD ", 1)[1])
 			if base == "memorie":
-				nume = str(link.contents[1].contents[1].contents[0].contents[1].contents[0].get('alt').split("+", 1)[0].replace(u'\xa0', u' ').split(",", 1)[0].split("Memorie ", 1)[1])
+				nume = str(link.contents[1].contents[1].contents[0].contents[1].contents[0].get('alt').split("+", 1)[0].replace(u'\xa0', u' ').split("Memorie ", 1)[1])
 			pret = int(link.contents[5].contents[2].contents[2].contents[0].replace(".",""))
 			timp = int(int(time.time()))
 			data = (timp, nume, pret)
