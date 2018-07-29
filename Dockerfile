@@ -12,6 +12,7 @@ RUN apk update && apk add wget ca-certificates
 RUN python -m pip install mysql-connector && \
   python -m pip install schedule &&\ 
   python -m pip install beautifulsoup4 &&\
+  python -m pip install lxml &&\
   python -m pip install bs4
 
 ENTRYPOINT ["python", "scrape.py"]
