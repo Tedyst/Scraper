@@ -13,4 +13,4 @@ RUN python -m pip install mysql-connector && \
   python -m pip install schedule &&\ 
   python -m pip install beautifulsoup4
 
-ENTRYPOINT ["python3", "scrape.py"]
+ENTRYPOINT ["python", "scrape.py"]
