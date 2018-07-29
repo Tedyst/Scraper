@@ -45,6 +45,7 @@ def cauta():
 	findLinks("https://www.emag.ro/procesoare/filter/familie-procesor-f2666,amd-ryzen-7-v24725/familie-procesor-f2666,amd-ryzen-5-v24753/familie-procesor-f2666,amd-ryzen-3-v25688/c?ref=lst_leftbar_2666_25688,lst_leftbar_2666_24753,lst_leftbar_2666_24725")
 	print time.time()
 
+cauta()
 
 schedule.every(1).hour.do(cauta)
 
