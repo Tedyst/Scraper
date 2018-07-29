@@ -13,15 +13,13 @@ variables:
 build:
   stage: build
   script:
-    - docker build -t registry.gitlab.com/tedyst/spotifybot:latest .
-    - docker push registry.gitlab.com/tedyst/spotifybot:latest
+    - docker build -t registry.gitlab.com/tedyst/scraper:latest .
+    - docker push registry.gitlab.com/tedyst/scraper:latest
     
 lansare:
   stage: lansare
   script:
-    - docker stop spotifybot_1 || true
-    - docker rm spotifybot_1 || true
-    - docker run --name spotifybot_1 -d --restart always
-      -v /var/spotifybot/audio_cache/:/usr/src/musicbot/audio_cache/
-      -v /var/spotifybot/data/:/usr/src/musicbot/data/
-      registry.gitlab.com/tedyst/spotifybot:latest
+    - docker stop scraper || true
+    - docker rm scraper || true
+    - docker run --name scraper -d --restart always
+      registry.gitlab.com/tedyst/scraper:latest
