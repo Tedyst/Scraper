@@ -21,5 +21,5 @@ lansare:
   script:
     - docker stop scraper || true
     - docker rm scraper || true
-    - docker run --name scraper -d --restart always
+    - docker run --name scraper -d --restart always -network mc
       registry.gitlab.com/tedyst/scraper:latest
