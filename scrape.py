@@ -8,10 +8,10 @@ mydb = mysql.connector.connect(
   host="mysql",
   user="tedy",
   passwd="cosica",
-  database="ryzen"
+  database="tedy"
 )
 mycursor = mydb.cursor()
-sql = "INSERT INTO pret (timp, nume, pret) VALUES (%s, %s, %s)"
+sql = "INSERT INTO ryzen (timp, nume, pret) VALUES (%s, %s, %s)"
 
 def findLinks(url):
 	userAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36"
