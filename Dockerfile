@@ -10,8 +10,8 @@ RUN echo \
 COPY scrape.py ./scrape.py
 
 RUN apk add wget python
-RUN python3 -m pip install mysql-connector && \
-  python3 -m pip install schedule &&\ 
-  python3 -m pip install beautifulsoap4
+RUN python -m pip install mysql-connector && \
+  python -m pip install schedule &&\ 
+  python -m pip install beautifulsoap4
 
 ENTRYPOINT ["python3", "scrape.py"]
