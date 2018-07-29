@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM jfloff/alpine-python
 
 RUN echo \
   # replacing default repositories with edge ones
@@ -9,7 +9,7 @@ RUN echo \
 
 COPY scrape.py ./scrape.py
 
-RUN apk add wget python
+RUN apk add wget
 RUN python -m pip install mysql-connector && \
   python -m pip install schedule &&\ 
   python -m pip install beautifulsoap4
