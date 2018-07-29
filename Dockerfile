@@ -1,5 +1,4 @@
-FROM jfloff/alpine-python
-
+FROM frolvlad/alpine-python2
 RUN echo \
   # replacing default repositories with edge ones
   && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" > /etc/apk/repositories \
