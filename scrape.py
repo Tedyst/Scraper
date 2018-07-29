@@ -8,7 +8,7 @@ mydb = mysql.connector.connect(
   host="mysql",
   user="tedy",
   passwd="cosica",
-  database="tedy"
+  database="ryzen"
 )
 mycursor = mydb.cursor()
 sql = "INSERT INTO pret (timp, nume, pret) VALUES (%s, %s, %s)"
@@ -20,7 +20,7 @@ def findLinks(url):
 	soup = BeautifulSoup(html, "lxml")
 	if "emag" in url:
 		for link in soup.find_all('div',attrs={'class' : 'card-section-wrapper'}):
-			nume = str(link.contents[1].contents[1].contents[0].contents[1].contents[0].get('alt').split("+", 1)[0].replace(u'\xa0', u' '))
+			nume = str(link.contents[1].contents[1].contents[0].contents[1].contents[0].get('alt').split("+", 1)[0].replace(u'\xa0', u' ').split(",", 1)[0].split("Procesor AMD ", 1)[1])
 			pret = int(link.contents[5].contents[2].contents[2].contents[0].replace(".",""))
 			timp = int(int(time.time()))
 			data = (timp, nume, pret)
