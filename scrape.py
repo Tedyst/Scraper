@@ -77,25 +77,32 @@ async def on_ready():
 async def on_message(message):
     print(message.author.name + ' ' + message.content)
     if str(message.content) == str("/list"):
-        client.send_message(message.channel, 'ce?')
+        await client.send_message(message.channel, 'Ce vrei sa cauti?')
         print("Ce vr sa cauti?")
         return
 
     if message.content.startswith('/list'):
         read = open("emag.txt", "r")
+        embed = discord.Embed(
+            title="Lista Preturi " + message.content.replace('/list ', ''), description="Pe siteurile Altex si eMAG", color=0x00ff00)
         altex = 0
         emag = 0
         for line in read:
             if message.content.replace('/list ', '') in line:
                 if line.split('    ')[1].split(' ')[1] == "eMAG":
                     if emag != int(line.split('    ')[1].split(' ')[0]):
-                        await client.send_message(message.channel, line)
+                        embed.add_field(
+                            name='eMAG', value=line.split('    ')[1].replace('eMAG', ''), inline=True)
+                        # await client.send_message(message.channel, line)
                         emag = int(line.split('    ')[1].split(' ')[0])
                 else:
                     if altex != int(line.split('    ')[1].split(' ')[0]):
-                        await client.send_message(message.channel, line)
+                        embed.add_field(
+                            name='Altex', value=line.split('    ')[1].replace('Altex', ''), inline=True)
+                        # await client.send_message(message.channel, line)
                         altex = int(line.split('    ')[1].split(' ')[0])
-
+        if embed:
+            await client.send_message(message.channel, embed=embed)
     elif message.content.startswith('/add'):
         write = open("read.txt", "a+")
         read = open("read.txt", "r")
