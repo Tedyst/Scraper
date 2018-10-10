@@ -1,21 +1,21 @@
 import asyncio
 import discord
 from discordbot import mesaj
+from functii import cauta
 
 client = discord.Client()
 
 
 @client.event
 async def on_message(message):
-    await client.send_message(id=discord.Client.get_channel(message.channel), "Test")
+    # await client.send_message(id=discord.Client.get_channel(message.channel), "Test")
     await mesaj(message, client)
 
 
 async def runsearch():
-    from functii import cauta
+    cauta(client)
     while True:
         await asyncio.sleep(86400)
-        cauta(client)
 
 client.loop.create_task(runsearch())
 
