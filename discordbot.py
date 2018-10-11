@@ -39,34 +39,27 @@ async def mesaj(message, client):
         return
 
     if message.content.startswith('/list'):
-        assignid()
         read = open("emag.txt", "r")
         embed = Embed(
             title="Lista Preturi " + message.content.replace('/list ', ''), description="Pe siteurile Altex si eMAG", color=0x00ff00)
-
-        emag = Pret(0, "")
-        lista = []
-        initial = []
+        altex = 0
+        emag = 0
         for line in read:
             if message.content.replace('/list ', '') in line:
-                split1 = line.split('    ')[1].split(
-                    ' ', 1)[1].replace('\n', '')
-                print(split1 + ' ' + str(id.index(split1)) +
-                      ' ')
-                if lista[id.index(split1)].val:
-                    lista[id.index(split1)] = Pret(
-                        int(split1.split(' ')[0]), split1)
-                    initial[id.index(split1)] = lista[id.index(split1)]
-
-                if lista[id.index(split1)].val != int(split1.split(' ')[0]):
-                    temp = Pret(int(split1.split(' ')[0]), split1)
-                    lista[id.index(split1)].next = temp
-        for foo in id:
-            embed.add_field(
-                name=initial[foo].nume, value=initial[foo].traverse(), inline=True)
-
-        await client.send_message(message.channel, embed=embed)
-        print(emag.nume + ' ' + emag.next + ' ' + emag.val)
+                if line.split('    ')[1].split(' ')[1] == "eMAG":
+                    if emag != int(line.split('    ')[1].split(' ')[0]):
+                        embed.add_field(
+                            name='eMAG', value=line.split('    ')[1].replace('eMAG', ''), inline=True)
+                        # await client.send_message(message.channel, line)
+                        emag = int(line.split('    ')[1].split(' ')[0])
+                else:
+                    if altex != int(line.split('    ')[1].split(' ')[0]):
+                        embed.add_field(
+                            name='Altex', value=line.split('    ')[1].replace('Altex', ''), inline=True)
+                        # await client.send_message(message.channel, line)
+                        altex = int(line.split('    ')[1].split(' ')[0])
+        if embed:
+            await client.send_message(message.channel, embed=embed)
 
     elif message.content.startswith('/add'):
         write = open("read.txt", "a+")
@@ -76,6 +69,10 @@ async def mesaj(message, client):
                 print("Exista deja : " + line)
                 await client.send_message(message.channel, line)
                 return
+        if "http://" not in message.content:
+            await client.send_message(message.channel, 'Invalid url: ' + message.content.replace('/add ', ''))
+            print('Invalid')
+            return
         print("Adaugam " + message.content.replace('/add ', ''))
         write.write(message.content.replace('/add ', '').split(' ', 1)
                     [0] + '|' + message.content.replace('/add ', '').split(' ', 1)[1] + "\n")
