@@ -22,7 +22,7 @@ id = []
 
 
 def assignid():
-    read = open("read.txt", "r")
+    read = open("/read/read.txt", "r")
     for line in read:
         temp = line.replace('\n', '')
         if 'emag' in line:
@@ -39,7 +39,7 @@ async def mesaj(message, client):
         return
 
     if message.content.startswith('/list'):
-        read = open("emag.txt", "r")
+        read = open("/write/emag.txt", "r")
         embed = Embed(
             title="Lista Preturi " + message.content.replace('/list ', ''), description="Pe siteurile Altex si eMAG", color=0x00ff00)
         altex = 0
@@ -62,8 +62,8 @@ async def mesaj(message, client):
             await client.send_message(message.channel, embed=embed)
 
     elif message.content.startswith('/add'):
-        write = open("read.txt", "a+")
-        read = open("read.txt", "r")
+        write = open("/read/read.txt", "a+")
+        read = open("/read/read.txt", "r")
         for line in read:
             if line.startswith(message.content.replace('/add ', '').split(' ')[0]):
                 print("Exista deja : " + line)

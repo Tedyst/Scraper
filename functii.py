@@ -5,8 +5,8 @@ from datetime import datetime
 import time
 # from discordbot import notify
 
-f = open("emag.txt", "a+")
-read = open("read.txt", "r")
+f = open("/write/emag.txt", "a+")
+read = open("/read/read.txt", "r")
 
 
 def findLinks(url, base):

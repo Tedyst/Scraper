@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+  - kubernetes.io/pvc-protection
+  name: scraper
+spec:
+  storageClassName: local-storage
+  accessModes:
+  - ReadWriteOnce
+  dataSource: null
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+data:
+  read.txt: |
+    https://www.emag.ro/switch-d-link-5-port-10-100-1000mbps-auto-negotiation-dgs-1005d/pd/EF8KBBBBM/|Switch|304616441431457802
+    https://www.emag.ro/router-wireless-d-link-dual-band-ac1200-4-porturi-dir-842/pd/DKQH5YBBM/|Router D-Link|304616441431457802
+    https://www.emag.ro/tastatura-mecanica-gaming-logitech-g413-backlit-carbon-920-008310/pd/DRN6DDBBM/|Tastatura G413|304616441431457802
+    https://www.emag.ro/telefon-mobil-pocophone-f1-dual-sim-64-gb-4g-black-19879f1/pd/D9V12VBBM/#Negru|Pocophone Negru|304616441431457802
+    https://www.emag.ro/router-wireless-n450-tp-link-gigabit-tl-wr1043n/pd/D1M4JNBBM/|Router TP-Link|304616441431457802
+    https://www.emag.ro/masina-de-spalat-industriala-danube-18-kg-dnb-rowem18/pd/D2XLQJBBM/?X-Search-Id=8c1b7b3d1e7dffbc0c95&X-Product-Id=34309230&X-Search-Page=1&X-Search-Position=3&X-Section=search&X-MB=0&X-Search-Action=view|tu
+kind: ConfigMap
+metadata:
+  name: scraper-read
+---
+kind: Deployment
+apiVersion: apps/v1beta2
+metadata:
+  name: scraper
+  labels:
+    k8s-app: scraper
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: scraper
+  template:
+    metadata:
+      labels:
+        k8s-app: scraper
+    spec:
+      containers:
+      - name: scraper
+        image: registry.gitlab.com/tedyst/scraper:latest
+        volumeMounts:
+        - name: read
+          mountPath: /read
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
+      volumes:
+      - name: read
+        configMap:
+          name: scraper-read
+      - name: write
+        persistentVolumeClaim:
+          claimName: scraper
+      imagePullSecrets:
+        - name: regcred
