@@ -231,3 +231,104 @@
 [Thu Oct 11 17:24:44 2018]    179 eMAG Router TP-Link
 [Thu Oct 11 17:24:44 2018]    209 Altex Router TP-Link
 [Thu Oct 11 17:24:45 2018]    41650 eMAG tu
+[Sun Nov  4 16:57:42 2018]    69 eMAG Switch
+[Sun Nov  4 16:57:43 2018]    179 eMAG Router D-Link
+[Sun Nov  4 16:57:44 2018]    369 eMAG Tastatura G413
+[Sun Nov  4 16:57:45 2018]    1799 eMAG Pocophone Negru
+[Sun Nov  4 16:57:46 2018]    449 Altex Tastatura G413
+[Sun Nov  4 16:57:47 2018]    799 Altex G513
+[Sun Nov  4 16:57:48 2018]    179 eMAG Router TP-Link
+[Sun Nov  4 16:57:49 2018]    209 Altex Router TP-Link
+[Sun Nov  4 16:57:50 2018]    41650 eMAG tu
+[Sun Nov  4 16:59:11 2018]    69 eMAG Switch
+[Sun Nov  4 16:59:12 2018]    179 eMAG Router D-Link
+[Sun Nov  4 16:59:13 2018]    369 eMAG Tastatura G413
+[Sun Nov  4 16:59:14 2018]    1799 eMAG Pocophone Negru
+[Sun Nov  4 16:59:15 2018]    449 Altex Tastatura G413
+[Sun Nov  4 16:59:16 2018]    799 Altex G513
+[Sun Nov  4 16:59:17 2018]    179 eMAG Router TP-Link
+[Sun Nov  4 16:59:18 2018]    209 Altex Router TP-Link
+[Sun Nov  4 16:59:19 2018]    41650 eMAG tu
+[Sun Nov  4 17:00:19 2018]    69 eMAG Switch
+[Sun Nov  4 17:00:19 2018]    179 eMAG Router D-Link
+[Sun Nov  4 17:00:20 2018]    369 eMAG Tastatura G413
+[Sun Nov  4 17:00:21 2018]    1799 eMAG Pocophone Negru
+[Sun Nov  4 17:00:22 2018]    449 Altex Tastatura G413
+[Sun Nov  4 17:00:24 2018]    799 Altex G513
+[Sun Nov  4 17:00:24 2018]    179 eMAG Router TP-Link
+[Sun Nov  4 17:00:26 2018]    209 Altex Router TP-Link
+[Sun Nov  4 17:00:26 2018]    41650 eMAG tu
+[Sun Nov  4 17:01:27 2018]    69 eMAG Switch
+[Sun Nov  4 17:01:27 2018]    179 eMAG Router D-Link
+[Sun Nov  4 17:01:28 2018]    369 eMAG Tastatura G413
+[Sun Nov  4 17:01:28 2018]    1799 eMAG Pocophone Negru
+[Sun Nov  4 17:01:30 2018]    449 Altex Tastatura G413
+[Sun Nov  4 17:01:31 2018]    799 Altex G513
+[Sun Nov  4 17:01:32 2018]    179 eMAG Router TP-Link
+[Sun Nov  4 17:01:33 2018]    209 Altex Router TP-Link
+[Sun Nov  4 17:01:33 2018]    41650 eMAG tu
+[Sun Nov  4 17:03:57 2018]    69 eMAG Switch
+[Sun Nov  4 17:03:58 2018]    179 eMAG Router D-Link
+[Sun Nov  4 17:03:59 2018]    369 eMAG Tastatura G413
+[Sun Nov  4 17:03:59 2018]    1799 eMAG Pocophone Negru
+[Sun Nov  4 17:04:01 2018]    449 Altex Tastatura G413
+[Sun Nov  4 17:04:02 2018]    799 Altex G513
+[Sun Nov  4 17:04:03 2018]    179 eMAG Router TP-Link
+[Sun Nov  4 17:04:04 2018]    209 Altex Router TP-Link
+[Sun Nov  4 17:04:05 2018]    41650 eMAG tu
+[Sun Nov  4 17:08:03 2018]    69 eMAG Switch
+[Sun Nov  4 17:08:04 2018]    179 eMAG Router D-Link
+[Sun Nov  4 17:08:04 2018]    369 eMAG Tastatura G413
+[Sun Nov  4 17:08:05 2018]    1799 eMAG Pocophone Negru
+[Sun Nov  4 17:08:07 2018]    449 Altex Tastatura G413
+[Sun Nov  4 17:08:08 2018]    799 Altex G513
+[Sun Nov  4 17:08:09 2018]    179 eMAG Router TP-Link
+[Sun Nov  4 17:08:11 2018]    209 Altex Router TP-Link
+[Sun Nov  4 17:08:11 2018]    41650 eMAG tu
+[Sun Dec  2 18:05:07 2018]    64 eMAG Switch
+[Sun Dec  2 18:05:08 2018]    159 eMAG Router D-Link
+[Sun Dec  2 18:05:09 2018]    359 eMAG Tastatura G413
+[Sun Dec  2 18:05:10 2018]    1649 eMAG Pocophone Negru
+[Sun Dec  2 18:05:11 2018]    359 Altex Tastatura G413
+[Sun Dec  2 18:05:12 2018]    799 Altex G513
+[Sun Dec  2 18:05:13 2018]    174 eMAG Router TP-Link
+[Sun Dec  2 18:05:14 2018]    188 Altex Router TP-Link
+[Sun Dec  2 18:05:15 2018]    41650 eMAG tu
+[Sun Dec  2 18:05:16 2018]    3199 Altex S530UA
+[Sun Dec  2 18:05:17 2018]    64 eMAG Switch
+[Sun Dec  2 18:05:18 2018]    159 eMAG Router D-Link
+[Sun Dec  2 18:05:18 2018]    359 eMAG Tastatura G413
+[Sun Dec  2 18:05:19 2018]    1649 eMAG Pocophone Negru
+[Sun Dec  2 18:05:21 2018]    359 Altex Tastatura G413
+[Sun Dec  2 18:05:22 2018]    799 Altex G513
+[Sun Dec  2 18:05:23 2018]    174 eMAG Router TP-Link
+[Sun Dec  2 18:05:24 2018]    188 Altex Router TP-Link
+[Sun Dec  2 18:05:25 2018]    41650 eMAG tu
+[Sun Dec  2 18:05:26 2018]    3199 Altex S530UA
+[Sun Dec  2 20:07:46 2018]    64 eMAG Switch
+[Sun Dec  2 20:07:47 2018]    159 eMAG Router D-Link
+[Sun Dec  2 20:07:47 2018]    359 eMAG Tastatura G413
+[Sun Dec  2 20:07:48 2018]    1649 eMAG Pocophone Negru
+[Sun Dec  2 20:07:49 2018]    359 Altex Tastatura G413
+[Sun Dec  2 20:07:50 2018]    799 Altex G513
+[Sun Dec  2 20:07:50 2018]    174 eMAG Router TP-Link
+[Sun Dec  2 20:07:51 2018]    188 Altex Router TP-Link
+[Sun Dec  2 20:07:51 2018]    41650 eMAG tu
+[Sun Dec  2 20:09:58 2018]    64 eMAG Switch
+[Sun Dec  2 20:09:58 2018]    159 eMAG Router D-Link
+[Sun Dec  2 20:09:59 2018]    359 eMAG Tastatura G413
+[Sun Dec  2 20:09:59 2018]    1649 eMAG Pocophone Negru
+[Sun Dec  2 20:10:00 2018]    359 Altex Tastatura G413
+[Sun Dec  2 20:10:01 2018]    799 Altex G513
+[Sun Dec  2 20:10:02 2018]    174 eMAG Router TP-Link
+[Sun Dec  2 20:10:03 2018]    188 Altex Router TP-Link
+[Sun Dec  2 20:10:03 2018]    3199 Altex S530ua
+[Sun Dec  2 20:12:19 2018]    64 eMAG Switch
+[Sun Dec  2 20:12:19 2018]    159 eMAG Router D-Link
+[Sun Dec  2 20:12:20 2018]    359 eMAG Tastatura G413
+[Sun Dec  2 20:12:20 2018]    1649 eMAG Pocophone Negru
+[Sun Dec  2 20:12:21 2018]    359 Altex Tastatura G413
+[Sun Dec  2 20:12:22 2018]    799 Altex G513
+[Sun Dec  2 20:12:23 2018]    174 eMAG Router TP-Link
+[Sun Dec  2 20:12:24 2018]    188 Altex Router TP-Link
+[Sun Dec  2 20:12:24 2018]    3199 Altex S530ua

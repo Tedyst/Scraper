@@ -5,8 +5,8 @@ from datetime import datetime
 import time
 # from discordbot import notify
 
-f = open("/write/emag.txt", "a+")
-read = open("/read/read.txt", "r")
+# f = open("emag.txt", "a+")
+# read = open("read.txt", "r")
 
 
 def findLinks(url, base):
@@ -35,7 +35,7 @@ def findPrice(url):
             return str(link.contents[0].strip().replace(".", "").replace(" ", "").replace("Lei", "").replace("<sup>", ",").replace("</sup>", "").replace("<span>", "").replace("</span>", "")) + " eMAG "
     if "altex" in url:
         for link in soup.find_all('span', attrs={'class': 'Price-int'}):
-            return str(link.contents[0]) + " Altex "
+            return str(link.contents[0].replace(".", "")) + " Altex "
 
 
 def log(rezultat):
@@ -52,3 +52,19 @@ def cauta(client):
     print("Citit perturile la " + datetime.now().strftime('%c'))
 
     read.seek(0)
+
+
+def fullPage(url):
+    html = urllib.request.urlopen(url).read()
+    soup = BeautifulSoup(html, "lxml")
+    if "emag" in url:
+        for link in soup.find_all('div', attrs={'class': 'card-section-wrapper'}):
+            nume = str(
+                link.contents[1].contents[1].contents[0].contents[1].contents[0].get('alt'))
+            pret = int(
+                link.contents[5].contents[2].contents[2].contents[0].replace(".", "")) + 1
+            timp = int(int(time.time()))
+            print(timp, nume, pret)
+
+
+fullPage("https://www.emag.ro/procesoare/c")

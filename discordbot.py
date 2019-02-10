@@ -22,7 +22,7 @@ id = []
 
 
 def assignid():
-    read = open("/read/read.txt", "r")
+    read = open("read.txt", "r")
     for line in read:
         temp = line.replace('\n', '')
         if 'emag' in line:
@@ -33,13 +33,19 @@ def assignid():
 
 async def mesaj(message, client):
     print(message.author.name + ' ' + message.content + ' ' + message.channel.id)
+    if str(message).startswith('list'):
+        await client.delete_message(message)
+    if str(message).startswith('/add'):
+        await client.delete_message(message)
     if str(message.content) == str("/list"):
-        await client.send_message(message.channel, 'Ce vrei sa cauti?')
+        mesaj = await client.send_message(message.channel, 'Ce vrei sa cauti?')
+        await asyncio.sleep(10)
+        await client.delete_message(mesaj)
         print("Ce vr sa cauti?")
         return
 
     if message.content.startswith('/list'):
-        read = open("/write/emag.txt", "r")
+        read = open("emag.txt", "r")
         embed = Embed(
             title="Lista Preturi " + message.content.replace('/list ', ''), description="Pe siteurile Altex si eMAG", color=0x00ff00)
         altex = 0
@@ -59,29 +65,39 @@ async def mesaj(message, client):
                         # await client.send_message(message.channel, line)
                         altex = int(line.split('    ')[1].split(' ')[0])
         if embed:
-            await client.send_message(message.channel, embed=embed)
+            mesaj = await client.send_message(message.channel, embed=embed)
+            await asyncio.sleep(10)
+            await client.delete_message(mesaj)
 
     elif message.content.startswith('/add'):
-        write = open("/read/read.txt", "a+")
-        read = open("/read/read.txt", "r")
+        write = open("read.txt", "a+")
+        read = open("read.txt", "r")
         for line in read:
             if line.startswith(message.content.replace('/add ', '').split(' ')[0]):
                 print("Exista deja : " + line)
-                await client.send_message(message.channel, line)
+                mesaj = await client.send_message(message.channel, line)
+                await asyncio.sleep(10)
+                await client.delete_message(mesaj)
                 return
         if "http://" not in message.content:
-            await client.send_message(message.channel, 'Invalid url: ' + message.content.replace('/add ', ''))
+            mesaj = await client.send_message(message.channel, 'Invalid url: ' + message.content.replace('/add ', ''))
+            await asyncio.sleep(10)
+            await client.delete_message(mesaj)
             print('Invalid')
             return
         print("Adaugam " + message.content.replace('/add ', ''))
         write.write(message.content.replace('/add ', '').split(' ', 1)
                     [0] + '|' + message.content.replace('/add ', '').split(' ', 1)[1] + "\n")
-        await client.send_message(message.channel, 'Adaugat ' + message.content.replace('/add ', ''))
+        mesaj = await client.send_message(message.channel, 'Adaugat ' + message.content.replace('/add ', ''))
+        await asyncio.sleep(10)
+        await client.delete_message(mesaj)
         write.flush()
 
     elif message.content.startswith("/run"):
         cauta(client)
-        await client.send_message(message.channel, "Am facut refresh la preturi!")
+        mesaj = await client.send_message(message.channel, "Am facut refresh la preturi!")
+        await asyncio.sleep(10)
+        await client.delete_message(mesaj)
 
 
 # def notify(client, id):

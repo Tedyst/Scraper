@@ -13,9 +13,10 @@ async def on_message(message):
 
 
 async def runsearch():
-    cauta(client)
     while True:
         await asyncio.sleep(86400)
+        cauta(client)
+
 
 client.loop.create_task(runsearch())
 

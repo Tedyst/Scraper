@@ -22,7 +22,7 @@ RUN python3 -m pip install schedule &&\
   python3 -m pip install discord.py &&\
   python3 -m pip install asyncio &&\
   python3 -m pip install bs4
-VOLUME ["/write/emag.txt", "/read/read.txt"]
-CMD python3 main.py
+VOLUME ["emag.txt", "read.txt"]
+CMD ["python3","-u","main.py"]
 
 COPY main.py discordbot.py functii.py scrape.py ./
