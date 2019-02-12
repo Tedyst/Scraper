@@ -1,23 +1,32 @@
-import asyncio
-import discord
-from discordbot import mesaj
-from functii import cauta
-
-client = discord.Client()
+import queue
+from functii import linkType
+import time
 
 
-@client.event
-async def on_message(message):
-    # await client.send_message(id=discord.Client.get_channel(message.channel), "Test")
-    await mesaj(message, client)
-
-
-async def runsearch():
+def worker():
     while True:
-        await asyncio.sleep(86400)
-        cauta(client)
+        if q.qsize() == 0:
+            add()
+        item = q.get()
+        try:
+            linkType(item)
+        except:
+            print("eMag a dat rate-limiting...")
+            print("Wait 30 min...")
+            time.sleep(1800)
+            continue
+        q.task_done()
+        print(q.qsize(), "pagini ramase")
+        time.sleep(120)
 
 
-client.loop.create_task(runsearch())
+q = queue.Queue()
 
-client.run('Mjc2OTY0MDU2Mzk5ODcyMDAy.DoVAEA.eJ4ic5KAtj9D13K-LrMc5UWpqBs')
+
+def add():
+    source = open("source.txt", "r")
+    for line in source:
+        q.put(line)
+
+
+worker()

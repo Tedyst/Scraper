@@ -1,2 +1,0 @@
-import discordbot
-import scrape

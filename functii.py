@@ -1,30 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib.request
-import asyncio
-from datetime import datetime
 import time
-# from discordbot import notify
-
-# f = open("emag.txt", "a+")
-# read = open("read.txt", "r")
-
-
-def findLinks(url, base):
-    html = urllib.request.urlopen(url).read()
-    soup = BeautifulSoup(html, "lxml")
-    if "emag" in url:
-        for link in soup.find_all('div', attrs={'class': 'card-section-wrapper'}):
-            if base == "ryzen":
-                nume = str(link.contents[1].contents[1].contents[0].contents[1].contents[0].get('alt').split(
-                    "+", 1)[0].replace(u'\xa0', u' ').split(",", 1)[0].split("Procesor AMD ", 1)[1])
-            if base == "memorie":
-                nume = str(link.contents[1].contents[1].contents[0].contents[1].contents[0].get(
-                    'alt').split("+", 1)[0].replace(u'\xa0', u' ').split("Memorie ", 1)[1])
-            pret = int(
-                link.contents[5].contents[2].contents[2].contents[0].replace(".", ""))
-            timp = int(int(time.time()))
-            data = (timp, nume, pret)
-            print(data)
+from logger import log
 
 
 def findPrice(url):
@@ -38,33 +15,26 @@ def findPrice(url):
             return str(link.contents[0].replace(".", "")) + " Altex "
 
 
-def log(rezultat):
-    print(rezultat)
-    f.write("[" + datetime.now().strftime('%c')+"]    " + rezultat + "\n")
-
-
-def cauta(client):
-    for line in read:
-        text = findPrice(line.split("|")[0])
-        log(text + line.split("|")[1].replace('\n', ''))
-        # notify(client, line.split("|")[3])
-    f.flush()
-    print("Citit perturile la " + datetime.now().strftime('%c'))
-
-    read.seek(0)
-
-
 def fullPage(url):
     html = urllib.request.urlopen(url).read()
     soup = BeautifulSoup(html, "lxml")
     if "emag" in url:
         for link in soup.find_all('div', attrs={'class': 'card-section-wrapper'}):
-            nume = str(
-                link.contents[1].contents[1].contents[0].contents[1].contents[0].get('alt'))
-            pret = int(
-                link.contents[5].contents[2].contents[2].contents[0].replace(".", "")) + 1
-            timp = int(int(time.time()))
-            print(timp, nume, pret)
+            try:
+                nume = str(
+                    link.contents[1].contents[1].contents[0].contents[1].contents[0].get('alt'))
+                pret = int(
+                    link.contents[5].contents[2].contents[2].contents[0].replace(".", "")) + 1
+                timp = int(int(time.time()))
+                link = str(link.contents[1].contents[1].contents[0]['href'])
+                data = (timp, pret, nume, link, "emag")
+                log(data)
+            except:
+                print("Error : ", link)
 
 
-fullPage("https://www.emag.ro/procesoare/c")
+def linkType(url):
+    if "pd" in url:
+        findPrice(url)
+    else:
+        fullPage(url)

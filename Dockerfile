@@ -16,13 +16,9 @@ RUN apk update && apk add --no-cache wget ca-certificates libxslt-dev py-lxml li
   libffi-dev \
   musl-dev
 
-RUN python3 -m pip install schedule &&\ 
-  python3 -m pip install beautifulsoup4 &&\
-  python3 -m pip install lxml &&\
-  python3 -m pip install discord.py &&\
-  python3 -m pip install asyncio &&\
-  python3 -m pip install bs4
-VOLUME ["emag.txt", "read.txt"]
-CMD ["python3","-u","main.py"]
+COPY requirements.txt ./
+RUN python3 -m pip install -r requirements.txt
 
-COPY main.py discordbot.py functii.py scrape.py ./
+CMD ["python3","-u","scrape.py"]
+
+COPY source.txt logger.py functii.py scrape.py ./
