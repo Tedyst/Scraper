@@ -1,8 +1,7 @@
 version: '3'
 
 services:
-  reverse-proxy:
-    image: scraper
+  scraper:
     build: 
       context: ./
     container_name: scraper

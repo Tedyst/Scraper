@@ -19,6 +19,8 @@ RUN apk update && apk add --no-cache wget ca-certificates libxslt-dev py-lxml li
 COPY requirements.txt ./
 RUN python3 -m pip install -r requirements.txt
 
+USER nobody
+
 CMD ["python3","-u","scrape.py"]
 
 COPY source.txt logger.py functii.py scrape.py ./
