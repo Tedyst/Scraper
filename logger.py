@@ -1,6 +1,6 @@
 import elasticsearch
 import json
-es = elasticsearch.Elasticsearch([{'host': '172.28.0.5', 'port': 9200}])
+es = elasticsearch.Elasticsearch([{'host': 'elasticsearch', 'port': 9200}])
 
 
 def connect_elasticsearch():
@@ -11,17 +11,18 @@ def connect_elasticsearch():
 
 
 def log(data):
+    id = data[3].split('/')[5]
     json = {
         "timp": data[0],
         "pret": data[1],
         "name": data[2],
-        "url": data[3],
+        "id": id,
         "source": data[4]
     }
     searchJson = {
         "query": {
             "match_phrase": {
-                "url": data[3]
+                "id": id
             }
         },
         "sort": {
@@ -56,7 +57,7 @@ def create_index():
                     "name": {
                         "type": "text"
                     },
-                    "url": {
+                    "id": {
                         "type": "text"
                     },
                     "source": {
