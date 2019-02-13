@@ -17,7 +17,7 @@ def worker():
             continue
         q.task_done()
         print(q.qsize(), "pagini ramase")
-        time.sleep(120)
+        time.sleep(400)
 
 
 q = queue.Queue()
