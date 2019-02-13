@@ -7,7 +7,7 @@ RUN echo \
 
 WORKDIR /app
 
-RUN apk update && apk add --no-cache wget ca-certificates libxslt-dev py-lxml libxml2 gcc libc6-compat libc-dev python3 \
+RUN apk update && apk add --no-cache wget ca-certificates libxslt-dev libxml2 gcc libc6-compat libc-dev python3 \
   bash \
   ffmpeg \
   libsodium-dev \
