@@ -6,7 +6,7 @@ from logger import log
 
 def findPrice(url):
     html = urllib.request.urlopen(url).read()
-    soup = BeautifulSoup(html, "lxml")
+    soup = BeautifulSoup(html, "html5lib")
     if "emag" in url:
         for link in soup.find_all('p', attrs={'class': 'product-new-price'}):
             return str(link.contents[0].strip().replace(".", "").replace(" ", "").replace("Lei", "").replace("<sup>", ",").replace("</sup>", "").replace("<span>", "").replace("</span>", "")) + " eMAG "
@@ -17,7 +17,7 @@ def findPrice(url):
 
 def fullPage(url):
     html = urllib.request.urlopen(url).read()
-    soup = BeautifulSoup(html, "lxml")
+    soup = BeautifulSoup(html, "html5lib")
     if "emag" in url:
         for link in soup.find_all('div', attrs={'class': 'card-section-wrapper'}):
             try:

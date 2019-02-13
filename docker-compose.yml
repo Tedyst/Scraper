@@ -6,3 +6,11 @@ services:
       context: ./
     container_name: scraper
     restart: always
+    networks:
+      - default
+
+
+networks:
+  default:
+    external:
+      name: web
