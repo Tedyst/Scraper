@@ -8,6 +8,9 @@ services:
     restart: always
     networks:
       - default
+    environment:
+      - PYTHONUNBUFFERED=1
+
 
 
 networks:
