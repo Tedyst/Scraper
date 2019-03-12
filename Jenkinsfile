@@ -6,7 +6,7 @@ node {
     }
 
     stage('Build image') {
-        app = docker.build("Tedyst/Scraper")
+        app = docker.build("tedyst/scraper")
     }
 
     stage('Test image') {
