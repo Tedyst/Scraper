@@ -1,4 +1,4 @@
-node {
+pipeline {
     def app
 
     stage('Clone repository') {
@@ -18,7 +18,7 @@ node {
                 source $PYENV_HOME/bin/activate
                 pip install -U pytest
                 pip install -r requirements.txt
-                pytest
+                pytest --junitxml=./text.xml
                 deactivate
             '''
         }
@@ -28,6 +28,12 @@ node {
         docker.withRegistry('https://registry.hub.docker.com', 'docker') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
+        }
+    }
+
+    post {
+        always {
+            junit './text.xml'
         }
     }
 }
