@@ -1,7 +1,7 @@
 node {
     def app
 
-    stage('Clone') {
+    stage('Clone repository') {
         checkout scm
     }
 
@@ -12,6 +12,7 @@ node {
     stage('Unit Testing') {
         app.inside {
             sh '''
+                pip3 install virtualenv
                 PYENV_HOME=$WORKSPACE/.pyenv/
                 virtualenv --no-site-packages $PYENV_HOME
                 source $PYENV_HOME/bin/activate
@@ -23,7 +24,7 @@ node {
         }
     }
 
-    stage('Push') {
+    stage('Push image') {
         docker.withRegistry('https://registry.hub.docker.com', 'docker') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
