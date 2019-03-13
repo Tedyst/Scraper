@@ -1,6 +1,7 @@
 import queue
 from utils.utils import linkType
 import time
+import utils.config as config
 
 
 def worker():
@@ -24,8 +25,7 @@ q = queue.Queue()
 
 
 def add():
-    source = open("source.txt", "r")
-    for line in source:
+    for line in config.links:
         q.put(line)
 
 

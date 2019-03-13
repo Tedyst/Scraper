@@ -7,4 +7,4 @@ USER nobody
 
 CMD ["pypy3","scrape.py"]
 
-COPY scrape.py utils ./
+COPY main.py utils ./
