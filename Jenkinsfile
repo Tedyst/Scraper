@@ -16,11 +16,11 @@ node {
                 PYENV_HOME=$WORKSPACE/.pyenv/
                 virtualenv --no-site-packages $PYENV_HOME
                 source $PYENV_HOME/bin/activate
-                pip install -U pytest
-                pip install -r requirements.txt
-                pytest
-                deactivate
+                pip3 install -U pytest
+                pip3 install -r requirements.txt
             '''
+            sh 'pytest'
+            sh 'deactivate'
         }
     }
 
