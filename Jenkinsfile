@@ -34,6 +34,7 @@ node {
     post {
         always {
             junit 'text.xml'
+            archiveArtifacts artifacts: 'text.xml'
         }
     }
 }
