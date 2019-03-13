@@ -18,7 +18,7 @@ node {
                 source $PYENV_HOME/bin/activate
                 pip install -U pytest
                 pip install -r requirements.txt
-                pytest --junitxml=./text.xml
+                pytest --junitxml=text.xml
                 deactivate
             '''
         }
@@ -33,7 +33,7 @@ node {
 
     post {
         always {
-            junit './text.xml'
+            junit 'text.xml'
         }
     }
 }
