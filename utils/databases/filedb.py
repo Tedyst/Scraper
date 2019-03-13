@@ -2,14 +2,16 @@ import pickle
 
 
 def log(data):
+    res = []
     try:
         f = open("db.txt", "rb")
-        data.append(pickle.load(f))
+        res = pickle.load(f)
     except:
         print("db.txt not found")
+    res.extend([data])
+    print(res)
     f2 = open("db.txt", "wb")
-    print(data)
-    pickle.dump(data, f2)
+    pickle.dump(res, f2)
     f2.flush()
 
 

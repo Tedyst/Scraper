@@ -18,8 +18,13 @@ def test_filedb():
         os.remove("db.txt")
     except:
         pass
-    data = [1, 1, 'asd', 'https://stoicatedy.ovh', 'emag']
-    log(data)
+    data = []
+    data.append([1, 1, 'asd', 'https://stoicatedy.ovh', 'emag'])
+    log([1, 1, 'asd', 'https://stoicatedy.ovh', 'emag'])
+    data.append([2, 2, 'asd2', 'https://stoicatedy.ovh', 'emag'])
+    log([2, 2, 'asd2', 'https://stoicatedy.ovh', 'emag'])
+    data.append([2, 2, 'asd2', 'https://stoicatedy.ovh', 'emag'])
+    log([2, 2, 'asd2', 'https://stoicatedy.ovh', 'emag'])
     f = open("db.txt", "rb")
     db = pickle.load(f)
     os.remove("db.txt")
@@ -33,7 +38,12 @@ def test_filedbRead():
         os.remove("db.txt")
     except:
         pass
-    data = [1, 1, 'asd', 'https://stoicatedy.ovh', 'emag']
-    log(data)
+    data = []
+    data.append([1, 1, 'asd', 'https://stoicatedy.ovh', 'emag'])
+    log([1, 1, 'asd', 'https://stoicatedy.ovh', 'emag'])
+    data.append([2, 2, 'asd2', 'https://stoicatedy.ovh', 'emag'])
+    log([2, 2, 'asd2', 'https://stoicatedy.ovh', 'emag'])
+    data.append([2, 2, 'asd2', 'https://stoicatedy.ovh', 'emag'])
+    log([2, 2, 'asd2', 'https://stoicatedy.ovh', 'emag'])
     db = read()
     assert db == data
