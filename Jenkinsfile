@@ -1,21 +1,29 @@
 node {
     def app
 
-    stage('Clone repository') {
+    stage('Clone') {
         checkout scm
     }
 
-    stage('Build image') {
+    stage('Build') {
         app = docker.build("tedyst/scraper")
     }
 
-    stage('Test image') {
+    stage('Unit Testing') {
         app.inside {
-            sh 'echo "Tests passed"'
+            sh '''
+                PYENV_HOME=$WORKSPACE/.pyenv/
+                virtualenv --no-site-packages $PYENV_HOME
+                source $PYENV_HOME/bin/activate
+                pip install -U pytest
+                pip install -r requirements.txt
+                pytest
+                deactivate
+            '''
         }
     }
 
-    stage('Push image') {
+    stage('Push') {
         docker.withRegistry('https://registry.hub.docker.com', 'docker') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")

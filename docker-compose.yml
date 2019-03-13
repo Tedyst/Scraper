@@ -1,17 +1,14 @@
-version: '3'
+version: "3"
 
 services:
   scraper:
-    build: 
+    build:
       context: ./
-    container_name: scraper
     restart: always
     networks:
       - default
     environment:
       - PYTHONUNBUFFERED=1
-
-
 
 networks:
   default:

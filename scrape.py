@@ -1,5 +1,5 @@
 import queue
-from functii import linkType
+from utils.utils import linkType
 import time
 
 
@@ -11,12 +11,12 @@ def worker():
         try:
             linkType(item)
         except:
-            print("eMag a dat rate-limiting...")
+            print("Rate-Limiting...")
             print("Wait 30 min...")
             time.sleep(1800)
             continue
         q.task_done()
-        print(q.qsize(), "pagini ramase")
+        print(q.qsize(), "pages remaining")
         time.sleep(400)
 
 

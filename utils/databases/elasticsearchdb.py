@@ -1,6 +1,8 @@
 import elasticsearch
 import json
-es = elasticsearch.Elasticsearch([{'host': 'elasticsearch', 'port': 9200}])
+import config
+es = elasticsearch.Elasticsearch(
+    [{'host': config.elasticsearch_host, 'port': config.elasticsearch_port}])
 
 
 def connect_elasticsearch():
@@ -70,7 +72,6 @@ def create_index():
 
     try:
         if not es.indices.exists(index_name):
-            # Ignore 400 means to ignore "Index Already Exist" error.
             es.indices.create(
                 index=index_name, body=settings)
             print('Created Index')
