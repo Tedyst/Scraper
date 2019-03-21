@@ -13,7 +13,6 @@ def connect_elasticsearch():
 
 
 def log(data):
-    print(data)
     id = data[3].split('/')[5]
     json = {
         "timp": data[0],
