@@ -1,4 +1,4 @@
-use_elasticsearch = False
+use_elasticsearch = True
 elasticsearch_host = "elasticsearch"
 elasticsearch_port = 9200
 links = ["https://www.emag.ro/routere_wireless/p1/c",

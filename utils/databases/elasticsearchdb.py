@@ -1,6 +1,6 @@
 import elasticsearch
 import json
-import config
+import utils.config as config
 es = elasticsearch.Elasticsearch(
     [{'host': config.elasticsearch_host, 'port': config.elasticsearch_port}])
 

@@ -3,8 +3,13 @@ FROM python:alpine
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
+WORKDIR /app
 USER nobody
 
-CMD ["python","main.py"]
+ENV PYTHONPATH /
 
-COPY main.py utils ./
+CMD ["python","/main.py"]
+
+COPY utils/__init__.py /
+COPY utils /utils/
+COPY main.py /
