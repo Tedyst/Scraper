@@ -13,12 +13,12 @@ def worker():
             linkType(item)
         except:
             print("Rate-Limiting...")
-            print("Wait 30 min...")
-            time.sleep(1800)
+            print("Wait 300 min...")
+            time.sleep(18000)
             continue
         q.task_done()
         print(q.qsize(), "pages remaining")
-        time.sleep(400)
+        time.sleep(4000)
 
 
 q = queue.Queue()
