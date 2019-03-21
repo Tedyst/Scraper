@@ -5,6 +5,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 USER nobody
 
-CMD ["pypy3","scrape.py"]
+CMD ["python","main.py"]
 
 COPY main.py utils ./
