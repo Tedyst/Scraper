@@ -11,7 +11,8 @@ def worker():
         item = q.get()
         try:
             linkType(item)
-        except:
+        except AssertionError as error:
+            print(error)
             print("Rate-Limiting...")
             print("Wait 300 min...")
             time.sleep(18000)

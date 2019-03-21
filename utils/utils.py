@@ -21,4 +21,5 @@ def linkType(url):
         print("Not supported yet!")
     else:
         data = getBigPage(url)
-        log(data)
+        for i in data:
+            log(i)
