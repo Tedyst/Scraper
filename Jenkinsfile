@@ -17,18 +17,19 @@ pipeline {
                 }
             }
         }
-        if (env.BRANCH_NAME == 'master') {
-            stage('Build and Push to Docker') {
-                steps {
-                    script {
+        
+        stage('Build and Push to Docker') {
+            steps {
+                script {
+                    if (env.BRANCH_NAME == 'master') {
                         docker.build("tedyst/scraper")
                         docker.withRegistry('https://registry.hub.docker.com', 'docker') {
                             app.push("latest")
                         }
                     }
                 }
-            }   
-        }
+            }
+        }   
     }
     post {
         always {
