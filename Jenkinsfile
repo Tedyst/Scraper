@@ -17,21 +17,18 @@ pipeline {
                 }
             }
         }
-
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    if (env.BRANCH_NAME == 'master') {
+        if (env.BRANCH_NAME == 'master') {
+            stage('Build Docker Image') {
+                steps {
+                    script {
                         docker.build("tedyst/scraper")
                     }
                 }
             }
-        }
 
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    if (env.BRANCH_NAME == 'master') {
+            stage('Push Docker Image') {
+                steps {
+                    script {
                         docker.withRegistry('https://registry.hub.docker.com', 'docker') {
                             app.push("latest")
                         }
@@ -40,7 +37,6 @@ pipeline {
             }
         }
     }
-
     post {
         always {
             junit 'text.xml'
