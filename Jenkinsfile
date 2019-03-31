@@ -25,14 +25,18 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                docker.build("tedyst/scraper")
+                script {
+                    docker.build("tedyst/scraper")
+                }
             }
         }
 
         stage('Push Docker Image') {
             steps {
-                docker.withRegistry('https://registry.hub.docker.com', 'docker') {
-                    app.push("latest")
+                script{
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker') {
+                        app.push("latest")
+                    }
                 }
             }
         }
