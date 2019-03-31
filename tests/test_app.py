@@ -1,6 +1,6 @@
 def test_getPage1():
     from utils.utils import getBigPage
-    page = getBigPage("https://stoicatedy.ovh")
+    page = getBigPage("https://google.ro")
     assert page is None
 
 
