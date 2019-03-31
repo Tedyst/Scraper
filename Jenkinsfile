@@ -1,4 +1,8 @@
 pipeline {
+    environment{
+        imageName = 'tedyst/scraper'
+        registryCredential = 'docker'
+    }
     agent any
     stages {
         stage('Clone repository') {
@@ -22,11 +26,11 @@ pipeline {
             steps {
                 script {
                     if (env.BRANCH_NAME == 'master') {
-                        script{
-                            sh '''
-                                docker build . -t tedyst/scraper
-                                docker push tedyst/scraper
-                            '''
+                        script {
+                            image = docker.build(imageName)
+                            docker.withRegistry('', registryCredential) {
+                                image.push("latest")
+                            }
                         }
                     }
                 }
