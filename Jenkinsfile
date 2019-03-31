@@ -22,9 +22,11 @@ pipeline {
             steps {
                 script {
                     if (env.BRANCH_NAME == 'master') {
-                        docker.build("tedyst/scraper")
-                        docker.withRegistry('https://registry.hub.docker.com', 'docker') {
-                            app.push("latest")
+                        script{
+                            sh '''
+                                docker build . -t tedyst/scraper
+                                docker push tedyst/scraper
+                            '''
                         }
                     }
                 }
