@@ -11,13 +11,8 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        PYENV_HOME=$WORKSPACE/.pyenv/
-                        virtualenv --no-site-packages $PYENV_HOME
-                        source $PYENV_HOME/bin/activate
-                        pip install -U pytest
                         pip install -r requirements.txt
                         pytest --junitxml=text.xml
-                        deactivate
                     '''
                 }
             }
@@ -26,16 +21,20 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("tedyst/scraper")
+                    if (env.BRANCH_NAME == 'master') {
+                        docker.build("tedyst/scraper")
+                    }
                 }
             }
         }
 
         stage('Push Docker Image') {
             steps {
-                script{
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker') {
-                        app.push("latest")
+                script {
+                    if (env.BRANCH_NAME == 'master') {
+                        docker.withRegistry('https://registry.hub.docker.com', 'docker') {
+                            app.push("latest")
+                        }
                     }
                 }
             }
