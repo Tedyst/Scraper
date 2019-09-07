@@ -16,7 +16,7 @@ def test_filedb():
     import pickle
     try:
         os.remove("db.txt")
-    except:
+    except Exception:
         pass
     data = []
     data.append([1, 1, 'asd', 'https://stoicatedy.ovh', 'emag'])
@@ -36,7 +36,7 @@ def test_filedbRead():
     from utils.databases.filedb import log, read
     try:
         os.remove("db.txt")
-    except:
+    except Exception:
         pass
     data = []
     data.append([1, 1, 'asd', 'https://stoicatedy.ovh', 'emag'])

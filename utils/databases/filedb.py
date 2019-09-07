@@ -6,8 +6,9 @@ def log(data):
     try:
         f = open("db.txt", "rb")
         res = pickle.load(f)
-    except:
+    except Exception:
         print("db.txt not found")
+        raise
     res.extend([data])
     print(res)
     f2 = open("db.txt", "wb")

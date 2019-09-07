@@ -1,5 +1,4 @@
 import elasticsearch
-import json
 import utils.config as config
 es = elasticsearch.Elasticsearch(
     [{'host': config.elasticsearch_host, 'port': config.elasticsearch_port}])
@@ -37,8 +36,9 @@ def log(data):
         pretVechi = int(result['hits']['hits'][0]['_source']['pret'])
         if pretVechi != data[1]:
             es.index(index='scraper', doc_type='preturi', body=json)
-    except:
+    except Exception:
         es.index(index='scraper', doc_type='preturi', body=json)
+        raise
 
 
 def create_index():
